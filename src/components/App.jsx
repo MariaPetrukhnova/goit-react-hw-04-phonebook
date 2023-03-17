@@ -3,6 +3,8 @@ import ContactForm from './ContactForm/ContactForm';
 import Filter from './Filter/Filter';
 import ContactList from './ContactList/ContactList';
 
+const LS_KEY = 'saved_contacts';
+
 class App extends Component {
   state = {
     contacts: [
@@ -43,6 +45,21 @@ class App extends Component {
     this.setState(prevState => ({
       contacts:prevState.contacts.filter(contact => contact.id !== contactId),
     }));
+ }
+  
+  componentDidMount() {
+    const savedContacts = localStorage.getItem(LS_KEY);
+    const parsedContacts = JSON.parse(savedContacts);
+
+    if (parsedContacts) {
+      this.setState({ contacts: parsedContacts });
+    }
+  }
+
+  componentDidUpdate(prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem(LS_KEY, JSON.stringify(this.state.contacts))
+    }
   }
 
   render() {

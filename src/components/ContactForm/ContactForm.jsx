@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import shortid from 'shortid';
 import css from './ContactForm.module.css';
 
+
 class ContactForm extends Component {
     state = {
         name: '',
@@ -26,6 +27,8 @@ class ContactForm extends Component {
     reset = () => {
         this.setState({ name: '', number: ''})
     }
+
+
 
     render() {
         return (
