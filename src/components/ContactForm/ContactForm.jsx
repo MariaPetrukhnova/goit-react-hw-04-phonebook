@@ -1,6 +1,7 @@
 import shortid from 'shortid';
 import css from './ContactForm.module.css';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 
 export default function ContactForm({ onSubmit }) {
@@ -67,4 +68,8 @@ export default function ContactForm({ onSubmit }) {
             <button type="submit" className={css.contacts_btn}>Add contact</button>
         </form>
     );
+};
+
+ContactForm.propTypes = {
+    onSubmit: PropTypes.func,
 };
